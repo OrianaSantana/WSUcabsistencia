@@ -6,10 +6,13 @@
 package WebService;
 
 import Logica.FabricaComando;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -26,5 +29,14 @@ public class NotificacionRecurso {
         return FabricaComando.ObtenerComandoNotificacion().Ejecutar(_id);
     }        
     
+    @POST
+    @Consumes("application/json")
+    @Path("notificacion")
+    public Response createNotificacion(String prueba) {
+      System.out.println("POST" + prueba);
+      String result = prueba;
+      FabricaComando.ObtenerComandoCrearNotificacion().Ejecutar(prueba);
+      return Response.status(201).entity(result).build();
+    }    
     
 }

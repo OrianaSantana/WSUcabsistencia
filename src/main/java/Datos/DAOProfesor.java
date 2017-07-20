@@ -34,7 +34,7 @@ public class DAOProfesor extends DAOGeneral implements IDAOProfesor {
     public ENTIDAD _profesor =  FABRICAENTIDAD.obtenerProfesor(0, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
     
     public enum NodeType implements Label{
-        Profesor;
+        Profesor, Usuario;
     }
     private static String FindUserByID(String id_profesor){    
         System.out.println("FIND "+id_profesor);
@@ -47,7 +47,21 @@ public class DAOProfesor extends DAOGeneral implements IDAOProfesor {
     private static String BuscarSecuencia(){
         return "MATCH (n:secuenciaID) RETURN n";
     }
-
+private String Arreglarstatus(String preferencias){
+             preferencias = preferencias.replace("[", "");
+             preferencias = preferencias.replace("]", "");
+             preferencias = preferencias.replace("pre_id", "");
+             preferencias = preferencias.replace("pre_nombre", "");
+             preferencias = preferencias.replace("pre_status", "");
+             preferencias = preferencias.replace("usu_id", "");
+             preferencias = preferencias.replace("\"", "");
+             preferencias = preferencias.replace(":", "");
+        return preferencias;
+    }
+    public String EliminarEspacioEnBlanco(String eliminar){
+        eliminar = eliminar.replace(" ", "");
+        return eliminar;
+    }    
     @Override
     public Dominio.ENTIDAD ConsultarProfesorPorID (String id_profesor)
     {
@@ -79,7 +93,7 @@ public class DAOProfesor extends DAOGeneral implements IDAOProfesor {
                     int usu_id = Integer.parseInt(id);
                     System.out.println(usu_id);
                     String usu_foto = ((Node) row.get("Usuario")).getProperty("Usu_foto").toString();
-                    System.out.println(usu_foto);
+                    System.out.println("status de conexion "+usu_foto);
                     String usu_correo = ((Node) row.get("Usuario")).getProperty("Usu_correo").toString();
                     System.out.println(usu_correo);
                     String usu_contraseña = ((Node) row.get("Usuario")).getProperty("Usu_contraseña").toString();
@@ -217,5 +231,51 @@ public class DAOProfesor extends DAOGeneral implements IDAOProfesor {
         return 1;
 
     }
+    @Override
+    public boolean ModificarStatusConexion(String profesor){
+        System.out.println("DAOPRODESOR "+profesor);
+        boolean respuesta = false;
+        GraphDatabaseService graphDb = null;
+        try {
+            graphDb = DAOGeneral.IniciarConexion();            
+        } catch (Exception ex) {
+            Logger.getLogger(DAOPreferencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        final Map<String, Object> params = MapUtil.map( "Usu_tipo", "Profesor" );               
+        try (Transaction tx = graphDb.beginTx()){
     
+            String str[] = Arreglarstatus(profesor).split(",");
+            for (int i = 0; i<str.length;i++)
+            {   
+                if(str[i].length()>1){
+                  str[i] =  EliminarEspacioEnBlanco(str[i]);
+                }
+            }            
+            ResourceIterator<Node> providers = graphDb.findNodes(NodeType.Usuario);
+            while (providers.hasNext()) {
+                final Node recordNode = providers.next();  
+                if (recordNode.getProperty("Usu_id").toString().equals(str[1]))
+                {   
+                    System.out.println("recordNode  "+ recordNode+ "  ID  "+ recordNode.getProperty("Usu_id"));
+                    recordNode.setProperty("Usu_foto", "on");                    
+                }
+                else {
+                    System.out.println("No encontrado "  + recordNode.getProperty("Usu_id"));
+                }                
+	    }             
+            tx.success();
+            respuesta = true; 
+        }
+        catch (NullPointerException NullPointerexcepcion){
+            System.out.println("Error en DAOProfesor, Función Modificar status conexion profesor, Excepción NullPointer : " + NullPointerexcepcion);
+            respuesta = false;
+            throw NullPointerexcepcion;   
+        }
+        finally{
+            graphDb.shutdown();
+            System.out.println("SHUTDOWN");
+        }
+
+        return respuesta;
+    }
 }

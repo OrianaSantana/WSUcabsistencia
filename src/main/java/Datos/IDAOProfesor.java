@@ -24,5 +24,11 @@ public interface IDAOProfesor extends IDAOGeneral{
      * @return Entidad de tipo Profesor
      */        
     public Dominio.ENTIDAD ConsultarProfesorPorCorreo (String correo_profesor) throws ParseException;
+     /*
+     * Funcion que consulta lista de Preferencias
+     * @param  formato String
+     * @return Entidad de tipo Preferencia
+     */   
+    public boolean ModificarStatusConexion(String profesor);
     
 }

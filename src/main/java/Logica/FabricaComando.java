@@ -50,7 +50,16 @@ public class FabricaComando {
     public static ComandoGeneral<String, String> ObtenerComandoCrearAsistencia()
     {
            return new ComandoCrearAsistenciaManual();
-    }    
+    }
+    public static ComandoGeneral<String, String> ObtenerComandoCrearNotificacion()
+    {
+           return new ComandoCrearNotificacion();
+    }  
+    public static ComandoGeneral<String, String> ObtenerComandoValidarConexion()
+    {
+           return new ComandoValidarConexion();
+    }
+           
      public static ComandoGeneral<String, String> ObtenerComandoConstruirMapa()
     {
            return new ComandoConstruirMapa();

@@ -19,6 +19,12 @@ public interface IDAONotificacion extends IDAOGeneral {
      * @return Entidad de tipo justificacion
      */   
     public ArrayList<Notificacion> ConsultarNotificacion(String id_profesor);
+    /*
+     * Funcion que crear notificacion
+     * @param  formato String
+     * @return Entidad de tipo justificacion
+     */ 
+    public boolean CrearNotificacion(String asistencias);        
     
     
 }

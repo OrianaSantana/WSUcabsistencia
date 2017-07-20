@@ -21,5 +21,5 @@ public interface IDAOHistoricoAsistencia extends IDAOGeneral{
      */      
 public boolean CrearAsistenciaManual(String asistencias);        
 
-    public ArrayList<HistoricoAsistencia> asistencias(String toString);
+public ArrayList<HistoricoAsistencia> asistencias(String toString);
 }
