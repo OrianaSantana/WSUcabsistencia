@@ -23,11 +23,11 @@ public class HistoricoAsistencia extends ENTIDAD{
     public String hist_asis_fecha;
     public String hist_asis_tipo;
     public boolean hist_asis_estado;
-    public Justificacion hist_asis_justificacion;
+    public String hist_asis_justificacion;
     public Horario hist_asis_horario;  
     public String hist_asis_observacion;
 
-    public HistoricoAsistencia(int hist_asis_id, String hist_asis_fecha, String hist_asis_tipo, boolean hist_asis_estado, Justificacion hist_asis_justificacion, Horario hist_asis_horario, String hist_asis_observacion) {
+    public HistoricoAsistencia(int hist_asis_id, String hist_asis_fecha, String hist_asis_tipo, boolean hist_asis_estado, String hist_asis_justificacion, Horario hist_asis_horario, String hist_asis_observacion) {
         this.hist_asis_id = hist_asis_id;
         this.hist_asis_fecha = hist_asis_fecha;
         this.hist_asis_tipo = hist_asis_tipo;
@@ -94,11 +94,11 @@ public class HistoricoAsistencia extends ENTIDAD{
 
 
      @XmlElement(required=true)
-    public Justificacion getHist_asis_justificacion() {
+    public String getHist_asis_justificacion() {
         return hist_asis_justificacion;
     }
 
-    public void setHist_asis_justificacion(Justificacion hist_asis_justificacion) {
+    public void setHist_asis_justificacion(String hist_asis_justificacion) {
         this.hist_asis_justificacion = hist_asis_justificacion;
     }
 

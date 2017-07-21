@@ -15,7 +15,8 @@ import org.neo4j.graphdb.factory.GraphDatabaseFactory;
  */
 public abstract class DAOGeneral implements IDAOGeneral{
 
-    public static final String DEFAULT_NEO4J_STORE_DIR = "C:\\Users\\Oriana\\Documents\\Neo4j\\base";
+    //public static final String DEFAULT_NEO4J_STORE_DIR = "C:\\Users\\Oriana\\Documents\\Neo4j\\base";
+    public static final String DEFAULT_NEO4J_STORE_DIR = "C:\\Users\\el_je_000\\Documents\\Neo4j\\base";
     public static String storeDir = DEFAULT_NEO4J_STORE_DIR;
     public static GraphDatabaseService graphDb;
 

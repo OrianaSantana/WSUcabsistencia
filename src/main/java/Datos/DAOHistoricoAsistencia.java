@@ -38,7 +38,7 @@ public class DAOHistoricoAsistencia extends DAOGeneral implements IDAOHistoricoA
     }
     
     public enum NodeType implements Label{
-        Historico_Asistencia, Horario;
+        Historico_Asistencia, Horario, Justificacion;
     }
     
     private static String AsistenciasID(String id_horario){
@@ -143,11 +143,24 @@ public class DAOHistoricoAsistencia extends DAOGeneral implements IDAOHistoricoA
                     int hist_asis_id = Integer.parseInt(id);
                     String hist_asis_fecha = ((Node) row.get("Historico_Asistencia")).getProperty("Asis_fecha").toString();                  
                     String hist_asis_tipo = ((Node) row.get("Historico_Asistencia")).getProperty("Asis_tipo_asistencia").toString();
-   
+                    String id_justificacion = ((Node) row.get("Historico_Asistencia")).getProperty("Asis_Jus_id").toString();
+                    String hist_asis_justificacion = "";
+                    ResourceIterator<Node> providers = graphDb.findNodes(NodeType.Justificacion);
+                    while (providers.hasNext()) {
+                        final Node recordNode = providers.next();               
+                        if (recordNode.getProperty("Jus_id").toString().equals(id_justificacion))
+                        {   
+                            hist_asis_justificacion = recordNode.getProperty("Jus_nombre").toString();
+                        }
+                        else {
+                            System.out.println("No encontrado "  + recordNode.getProperty("Jus_id"));
+                        }
+                    }
+                    
                     SimpleDateFormat simpleDate = new SimpleDateFormat ("dd/M/yyyy");
                     Date date = simpleDate.parse(hist_asis_fecha);
-                    
-                    this._historicoasistencia = FABRICAENTIDAD.obtenerHistoricoAsistencia(hist_asis_id, simpleDate.format(date), hist_asis_tipo, false,null,null,null);
+                    System.out.println("justificacion " + hist_asis_justificacion);
+                    this._historicoasistencia = FABRICAENTIDAD.obtenerHistoricoAsistencia(hist_asis_id, simpleDate.format(date), hist_asis_tipo, false,hist_asis_justificacion,null,null);
                     ListaAsistencias.add((HistoricoAsistencia) _historicoasistencia);
                 }            
              

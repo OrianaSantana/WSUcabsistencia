@@ -47,7 +47,7 @@ public class DAOProfesor extends DAOGeneral implements IDAOProfesor {
     private static String BuscarSecuencia(){
         return "MATCH (n:secuenciaID) RETURN n";
     }
-private String Arreglarstatus(String preferencias){
+    private String Arreglarstatus(String preferencias){
              preferencias = preferencias.replace("[", "");
              preferencias = preferencias.replace("]", "");
              preferencias = preferencias.replace("pre_id", "");
@@ -278,4 +278,53 @@ private String Arreglarstatus(String preferencias){
 
         return respuesta;
     }
+    
+    @Override
+    public boolean CerrarSesion(String profesor){
+        System.out.println("DAOPRODESOR "+profesor);
+        boolean respuesta = false;
+        GraphDatabaseService graphDb = null;
+        try {
+            graphDb = DAOGeneral.IniciarConexion();            
+        } catch (Exception ex) {
+            Logger.getLogger(DAOPreferencia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        final Map<String, Object> params = MapUtil.map( "Usu_tipo", "Profesor" );               
+        try (Transaction tx = graphDb.beginTx()){
+    
+            String str[] = Arreglarstatus(profesor).split(",");
+            for (int i = 0; i<str.length;i++)
+            {   
+                if(str[i].length()>1){
+                  str[i] =  EliminarEspacioEnBlanco(str[i]);
+                }
+            }            
+            ResourceIterator<Node> providers = graphDb.findNodes(NodeType.Usuario);
+            while (providers.hasNext()) {
+                final Node recordNode = providers.next();  
+                if (recordNode.getProperty("Usu_id").toString().equals(str[1]))
+                {   
+                    System.out.println("recordNode  "+ recordNode+ "  ID  "+ recordNode.getProperty("Usu_id"));
+                    recordNode.setProperty("Usu_foto", "off");                    
+                }
+                else {
+                    System.out.println("No encontrado "  + recordNode.getProperty("Usu_id"));
+                }                
+	    }             
+            tx.success();
+            respuesta = true; 
+        }
+        catch (NullPointerException NullPointerexcepcion){
+            System.out.println("Error en DAOProfesor, Función Modificar status conexion profesor, Excepción NullPointer : " + NullPointerexcepcion);
+            respuesta = false;
+            throw NullPointerexcepcion;   
+        }
+        finally{
+            graphDb.shutdown();
+            System.out.println("SHUTDOWN");
+        }
+
+        return respuesta;
+    }
+    
 }

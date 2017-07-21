@@ -16,8 +16,7 @@ public interface IDAOProfesor extends IDAOGeneral{
      * @param IDProfesor formato String
      * @return Entidad de tipo Profesor
      */        
-    public Dominio.ENTIDAD ConsultarProfesorPorID (String id_profesor) throws ParseException;
-    
+    public Dominio.ENTIDAD ConsultarProfesorPorID (String id_profesor) throws ParseException;    
     /*
      * Funcion que consulta un profesor segun un id
      * @param CorreoProfesor formato String
@@ -30,5 +29,11 @@ public interface IDAOProfesor extends IDAOGeneral{
      * @return Entidad de tipo Preferencia
      */   
     public boolean ModificarStatusConexion(String profesor);
+     /*
+     * Funcion que consulta lista de Preferencias
+     * @param  formato String
+     * @return Entidad de tipo Preferencia
+     */    
+    public boolean CerrarSesion(String profesor);
     
 }

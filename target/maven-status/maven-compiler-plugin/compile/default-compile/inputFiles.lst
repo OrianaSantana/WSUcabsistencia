@@ -2,9 +2,11 @@ C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\IDAOGene
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\IDAORol.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\DAOSalon.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\ComandoConsultarHorarioPorCorreo.java
+C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\ComandoCrearNotificacion.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\ComandoCrearAsistenciaManual.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Dominio\Preferencia.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Dominio\Huella.java
+C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\ComandoValidarConexion.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\ComandoConstruirTest.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\FabricaComando.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Dominio\Notificacion.java
@@ -18,6 +20,7 @@ C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Dominio\FABRIC
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\WebService\HorarioProfesorXCorreoRecurso.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Dominio\ENTIDAD.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\DAOPreferencia.java
+C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\WebService\ProfesorStatusConexionRecurso.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Dominio\Profesor.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\DAOProfesor.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Dominio\Rol.java
@@ -42,6 +45,7 @@ C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\Comando
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\FabricaDAO.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\DAOHistoricoAsistencia.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\DAORol.java
+C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\ComandoCerrarSesionUsuario.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\DAOHuella.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\DAONotificacion.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\IDAONotificacion.java
@@ -53,4 +57,5 @@ C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Dominio\Horari
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\IDAOHistoricoAsistencia.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\ComandoGeneral.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Datos\IDAOSalon.java
+C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\WebService\ProfesorCerrarSesionRecurso.java
 C:\Users\el_je_000\Documents\GitHub\WSUcabsistencia\src\main\java\Logica\ComandoConsultarNotificacionProfesor.java

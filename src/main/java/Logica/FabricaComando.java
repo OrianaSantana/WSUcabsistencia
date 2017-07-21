@@ -59,7 +59,10 @@ public class FabricaComando {
     {
            return new ComandoValidarConexion();
     }
-           
+    public static ComandoGeneral<String, String> ObtenerComandoCerrarConexion()
+    {
+           return new ComandoCerrarSesionUsuario();
+    }           
      public static ComandoGeneral<String, String> ObtenerComandoConstruirMapa()
     {
            return new ComandoConstruirMapa();

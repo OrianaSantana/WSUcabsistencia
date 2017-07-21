@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class FABRICAENTIDAD {
     
-    public static ENTIDAD obtenerHistoricoAsistencia(int hist_asis_id, String hist_asis_fecha, String hist_asis_tipo, boolean hist_asis_estado, Justificacion hist_asis_justificacion, Horario hist_asis_horario, String hist_asis_observacion)
+    public static ENTIDAD obtenerHistoricoAsistencia(int hist_asis_id, String hist_asis_fecha, String hist_asis_tipo, boolean hist_asis_estado, String hist_asis_justificacion, Horario hist_asis_horario, String hist_asis_observacion)
     {
         return new HistoricoAsistencia(hist_asis_id,hist_asis_fecha,hist_asis_tipo,hist_asis_estado,hist_asis_justificacion,hist_asis_horario,hist_asis_observacion);
     }
