@@ -35,7 +35,7 @@ public class HistoricoAsistenciaRecurso {
     @GET  
     @Path("horarios")
     @Produces("application/json")
-    public String getpreferencia(@QueryParam("horario-id")String id){
+    public String getAsistencia (@QueryParam("horario-id")String id){
         System.out.println("Param " + id);    
         ArrayList<HistoricoAsistencia> listaAsistencias = new  ArrayList<>();
         

@@ -7,6 +7,8 @@ Logica\ComandoConsultarJustificacion.class
 Dominio\Justificacion.class
 Datos\DAOJustificacion.class
 Logica\ComandoConsultarHorarioProfesor.class
+WebService\ProfesorStatusConexionRecurso.class
+Datos\DAONotificacion$RelationType.class
 Datos\IDAOPreferencia.class
 WebService\ProfesorRecurso.class
 Logica\ComandoConsultarProfesor.class
@@ -15,6 +17,7 @@ Datos\IDAOHorario.class
 WebService\NotificacionRecurso.class
 WebService\PreferenciasRecurso.class
 WebService\HorarioProfesorXCorreoRecurso.class
+WebService\ProfesorCerrarSesionRecurso.class
 Datos\DAONotificacion$NodeType.class
 Datos\DAOGeneral.class
 Dominio\Salon.class
@@ -30,6 +33,7 @@ Logica\ComandoConsultarPreferencia.class
 Datos\DAOHistoricoAsistencia$NodeType.class
 Logica\ComandoConstruirTest.class
 Logica\ComandoConsultarNotificacionProfesor.class
+Logica\ComandoCrearNotificacion.class
 Datos\IDAOSalon.class
 Logica\ComandoGeneral.class
 Dominio\Rol.class
@@ -44,6 +48,7 @@ Datos\FabricaDAO.class
 WebService\JustificacionRecurso.class
 Logica\ComandoConsultarProfesorCorreo.class
 Datos\DAOHuella.class
+Logica\ComandoCerrarSesionUsuario.class
 Datos\IDAOHistoricoAsistencia.class
 Logica\ComandoConstruirMapa.class
 Datos\DAONotificacion.class
@@ -61,4 +66,5 @@ Dominio\Preferencia.class
 Datos\DAOHorario$NodeType.class
 Datos\DAOProfesor.class
 com\mycompany\wsucabsistencia\RestConfiguration.class
+Logica\ComandoValidarConexion.class
 WebService\LocalizacionRecurso.class
