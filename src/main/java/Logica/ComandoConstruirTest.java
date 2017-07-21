@@ -52,9 +52,8 @@ public class ComandoConstruirTest extends ComandoGeneral{
                     
            ArrayList listaTestNueva = ordenar(parametro);
            
-           SetDePrueba = _daoHuella.ModificarTest(listaTestNueva.toString());
-           //_daoPreferencia.ModificarPreferencia(preferencias);
-           System.out.println("Respuesta  " + SetDePrueba);                
+          SetDePrueba = _daoHuella.ModificarTest(listaTestNueva.toString());
+          System.out.println("Respuesta  " + "\n" + SetDePrueba);                
            return SetDePrueba;                      
         }
         catch (Exception ex)

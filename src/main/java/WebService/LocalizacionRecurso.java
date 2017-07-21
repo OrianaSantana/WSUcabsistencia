@@ -7,12 +7,12 @@ package WebService;
 
 import Logica.FabricaComando;
 import java.io.ByteArrayInputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
 import weka.classifiers.lazy.IBk;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -28,16 +28,16 @@ public class LocalizacionRecurso {
     @POST
     @Consumes("application/json")
     //@Produces("application/json") 
-    //Ojo puede que este POST produzca algo, o simplemente se envie el resultado y se maneja en el cliente la forma de mostrar la data
-    public Response createAsistencia(String prueba) throws UnsupportedEncodingException, Exception {
+    public String localizarProfesor (String prueba) throws UnsupportedEncodingException, Exception {
       System.out.println("POST LOCALIZACION" + prueba);
-      String result = null;
+      String result = "Correcto";
     
-     //El mapa se debe pedir una sola vez no siempre, validar eso
-      String Mapa = FabricaComando.ObtenerComandoConstruirMapa().Ejecutar("");
-      String Test = FabricaComando.ObtenerComandoConstruirTest().Ejecutar(prueba);
+      //El mapa o viene lleno o viene vacio, 2 condiciones
+      //String Mapa = FabricaComando.ObtenerComandoConstruirMapa().Ejecutar("");
+     
+     String Test = FabricaComando.ObtenerComandoConstruirTest().Ejecutar(prueba);
       
-      //Clasificador
+     //Clasificador
       
         int pasillo = 0; //0.0
         int l1207 = 0; // 1.0
@@ -49,21 +49,37 @@ public class LocalizacionRecurso {
         int l1213 = 0; // 7.0
         int ninguno = 0;
         
-        //Se convierte a Input Stream tanto mapa como test
-         InputStream MapaMagnetico = new ByteArrayInputStream(Mapa.getBytes("UTF-8"));
-         InputStream TestPredecir = new ByteArrayInputStream(Test.getBytes("UTF-8"));
+        //Si el mapa esta vacio entonces no se consulto en BD, se trabaja con el archivo ya existente
+       /* if (Mapa != "") {
+        //Se actualiza el archivo existente
+         FileWriter file = new FileWriter("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\MapaMagnetico.arff");
+         file.write(Mapa);
+         file.flush();
+        
+        //Solo se puede hacer Input Stream cuando el mapa esta lleno, por archivo no se puede
+        InputStream MapaMagnetico = new ByteArrayInputStream(Mapa.getBytes("UTF-8"));
+        } */
+        
          
-          // Clasificador, predice las clases 
+         //InputStream TestPredecir = new ByteArrayInputStream(Test.getBytes("UTF-8"));
+      
+         FileWriter file = new FileWriter("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\TestMagnetico.arff");
+         file.write(Test);
+         file.flush();
+       
+      // Clasificador, predice las clases 
        
           //Mapa
-        DataSource mapahuella = new DataSource(MapaMagnetico);
+      //  DataSource mapahuella = new DataSource(MapaMagnetico); //Mapa InputStream
+        DataSource mapahuella = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\MapaMagnetico.arff");
         Instances train = mapahuella.getDataSet();
         train.setClassIndex(train.numAttributes() -1);
         
         //Test
-        DataSource test = new DataSource(TestPredecir);
-        Instances predict = test.getDataSet();
-        predict.setClassIndex(predict.numAttributes() -1);
+      //  DataSource test = new DataSource(TestPredecir); //TestInputStream
+       DataSource test = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\TestMagnetico.arff");
+       Instances predict = test.getDataSet();
+       predict.setClassIndex(predict.numAttributes() -1);
         
         IBk knn = new IBk();
       
@@ -125,10 +141,47 @@ public class LocalizacionRecurso {
       System.out.println ("L1211" + " " + l1211);
       System.out.println ("L1212" + " " + l1212);
       System.out.println ("L1213" + " " + l1213);
+      System.out.println ("Ninguno" + " " + ninguno);
       
-      //Se debe comparar que salon tiene mas clasificaciones para otorgarselo a result
-         
-      return Response.status(201).entity(result).build(); //validar el tipo de respuesta a obtener
+     if ((pasillo > l1207) && (pasillo > l1208) && (pasillo > l1209) && (pasillo > l1210) && (pasillo > l1211) &&
+         (pasillo > l1212) && (pasillo > l1213) && (pasillo > ninguno)) { 
+    System.out.println ("Estoy en: " + pasillo);
+    result = "Pasillo";
+    
+} else if  ((l1207 > l1208) && (l1207 > l1209) && (l1207 > l1210) && (l1207 > l1211) && (l1207 > l1212) && 
+        (l1207 > l1213) && (l1207 > ninguno) && (l1207 > pasillo)){     
+    System.out.println ("Estoy en: " + l1207);
+    result = "L1207";
+} else if ((l1208 > pasillo) && (l1208 > l1207) && (l1208 > l1209) && (l1208 > l1210) && (l1208 > l1211) &&(l1208 > l1212) && 
+        (l1208 > l1213) && (l1208 > ninguno)) {                 
+    System.out.println ("Estoy en: " + l1208);
+    result = "L1208";
+} else if ((l1209 > pasillo) && (l1209 > l1207) && (l1209 > l1208) && (l1209 > l1210) && (l1209 > l1211) && (l1209 > l1212) && 
+        (l1209 > l1213) && (l1209 > ninguno)) {                               
+    System.out.println ("Estoy en: " + l1209);
+    result = "L1209";
+} else if ((l1210 > pasillo) && (l1210 > l1207) && (l1210 > l1208) && (l1210 > l1209) && (l1210 > l1211) && 
+        (l1210 > l1212) && (l1210 > l1213) && (l1210 > ninguno)) {
+    System.out.println ("Estoy en: " + l1210);
+    result = "L1210";
+} else if ((l1211 > pasillo) && (l1211 > l1207) && (l1211 > l1208) && (l1211 > l1209) && (l1211 > l1210) && (l1211 > l1212) && 
+        (l1211 > l1213) && (l1211 > ninguno)) {
+    System.out.println ("Estoy en: " + l1211);
+    result = "L1211";
+} else if ((l1212 > pasillo) && (l1212 > l1207) && (l1212 > l1208) && (l1212 > l1209) && (l1212 > l1210) && (l1212 > l1211) &&
+        (l1212 > l1213) && (l1212 > ninguno)) {
+    System.out.println ("Estoy en: " + l1212);
+    result = "L1212";
+} else if ((l1213 > pasillo) && (l1213 > l1207) && (l1213 > l1208) && (l1213 > l1209) && (l1213 > l1210) && (l1213 > l1211) &&
+        (l1213 > l1212) && (l1213 > ninguno)) {
+    System.out.println ("Estoy en: " + l1213);
+    result = "L1213";
+} else if ((ninguno > pasillo) && (ninguno > l1207) && (ninguno > l1208) && (ninguno > l1209) && (ninguno > l1210) && 
+        (ninguno > l1211) && (ninguno > l1212) && (ninguno > l1213)){                                           
+    System.out.println ("Estoy en: " + ninguno);
+    result = "Ninguno";
+}
+      return result; 
     }  
     
 }

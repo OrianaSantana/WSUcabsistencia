@@ -8,8 +8,6 @@ package Datos;
 import Dominio.ENTIDAD;
 import Dominio.FABRICAENTIDAD;
 import Dominio.Huella;
-import Dominio.Justificacion;
-import Dominio.Salon;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
@@ -41,17 +39,19 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
     private String ArreglarTest(String huellasTest){
              huellasTest = huellasTest.replace("[", "");
              huellasTest = huellasTest.replace("]", "");
-             huellasTest = huellasTest.replace("hue_x", "");
-             huellasTest = huellasTest.replace("hue_y", "");
-             huellasTest = huellasTest.replace("hue_z", "");
+             huellasTest = huellasTest.replace("vx", "");
+             huellasTest = huellasTest.replace("vy", "");
+             huellasTest = huellasTest.replace("vz", "");
              huellasTest = huellasTest.replace("\"", "");
              huellasTest = huellasTest.replace(":", "");
+             huellasTest = huellasTest.replace("pro_id", "");
+             huellasTest = huellasTest.replace(" ", "");
         return huellasTest;
     }
     
    @Override
     public String ModificarTest(String TestHuellas){
-        String respuesta = "@relation UCAB" + "\n" + "\n" + "@attribute x numeric" + "\n" + "@attribute y numeric" + "\n" + "@attribute z numeric" + "\n" + "@attribute clase {Pasillo,L1207,L1208,L1209,L1210,L1211,L1212,L1213}" + "\n" + "\n" + "@data";
+        String respuesta = "@relation UCAB" + "\n" + "\n" + "@attribute x numeric" + "\n" + "@attribute y numeric" + "\n" + "@attribute z numeric" + "\n" + "@attribute clase {Pasillo,L1207,L1208,L1209,L1210,L1211,L1212,L1213}" + "\n" + "\n" + "@data" + "\n";
       
         System.out.println("VALOR INICIAL DEL OBJETO A GUARDAR EN ARFF");
         System.out.println(respuesta);
@@ -74,9 +74,9 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
                  System.out.println("a" + a);
                  System.out.println("b" + b);
                  
-                respuesta = respuesta + str[i] + "," + str[a] + "," + str[b] + "," + "?";
+                respuesta = respuesta + str[i] + "," + str[a] + "," + str[b] + "," + "?" + "\n";
                 
-               i = i + 2;
+               i = i + 3;
                
                 System.out.println("i" + i);
                 System.out.println(respuesta);
