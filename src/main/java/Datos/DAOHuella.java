@@ -115,7 +115,7 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
         } catch (Exception ex) {
             Logger.getLogger(DAOHuella.class.getName()).log(Level.SEVERE, null, ex);
         }
-        final Map<String, Object> params = MapUtil.map( "Hue_tipo", "huellas" ); //Preguntar jesus si dejo el hue_tipo
+        final Map<String, Object> params = MapUtil.map( "hue_tipo", "huellas" ); //Preguntar jesus si dejo el hue_tipo
         try (Transaction tx = graphDb.beginTx()){            
              System.out.println("TRY DAOHuellaMapa");
              ResourceIterator<Node> providers = graphDb.findNodes(DAOHuella.NodeType.secuenciaID);
@@ -141,15 +141,15 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
                    {      
                        System.out.println("WHILE DAO huella Lista de huellas");
                        Map<String,Object> row = resultfound.next();
-                       String id =((Node) row.get("n")).getProperty("Hue_id").toString();
+                       String id =((Node) row.get("n")).getProperty("hue_id").toString();
                        int hue_id = Integer.parseInt(id);
-                       String x = ((Node) row.get("n")).getProperty("Hue_x").toString();
+                       String x = ((Node) row.get("n")).getProperty("hue_x").toString();
                        float hue_x = Integer.parseInt(x);
-                       String y = ((Node) row.get("n")).getProperty("Hue_y").toString();
+                       String y = ((Node) row.get("n")).getProperty("hue_y").toString();
                        float hue_y = Integer.parseInt(y); 
-                       String z = ((Node) row.get("n")).getProperty("Hue_z").toString();
+                       String z = ((Node) row.get("n")).getProperty("hue_z").toString();
                        float hue_z = Integer.parseInt(z); 
-                       String hue_salon = ((Node) row.get("n")).getProperty("Hue_salon").toString();
+                       String hue_salon = ((Node) row.get("n")).getProperty("hue_salon").toString();
 
                        this._huella = FABRICAENTIDAD.obtenerHuella(hue_id,hue_x,hue_y,hue_z,null,hue_salon);
                        ListaHuella.add((Huella) _huella);                    
