@@ -30,16 +30,16 @@ public class LocalizacionRecurso {
     //@Produces("application/json") 
     public String localizarProfesor (String prueba) throws UnsupportedEncodingException, Exception {
       System.out.println("POST LOCALIZACION" + prueba);
-      String result = "Correcto";
+      String result = "";
     
       //El mapa o viene lleno o viene vacio, 2 condiciones
-      //String Mapa = FabricaComando.ObtenerComandoConstruirMapa().Ejecutar("");
-     
-     String Test = FabricaComando.ObtenerComandoConstruirTest().Ejecutar(prueba);
+     String Mapa = FabricaComando.ObtenerComandoConstruirMapa().Ejecutar("");
+     System.out.println("MAPA " + Mapa);
+     //String Test = FabricaComando.ObtenerComandoConstruirTest().Ejecutar(prueba);
       
      //Clasificador
       
-        int pasillo = 0; //0.0
+     /*   int pasillo = 0; //0.0
         int l1207 = 0; // 1.0
         int l1208 = 0; // 2.0
         int l1209 = 0; // 3.0
@@ -47,7 +47,7 @@ public class LocalizacionRecurso {
         int l1211 = 0; // 5.0
         int l1212 = 0; // 6.0
         int l1213 = 0; // 7.0
-        int ninguno = 0;
+        int ninguno = 0;*/
         
         //Si el mapa esta vacio entonces no se consulto en BD, se trabaja con el archivo ya existente
        /* if (Mapa != "") {
@@ -63,21 +63,21 @@ public class LocalizacionRecurso {
          
          //InputStream TestPredecir = new ByteArrayInputStream(Test.getBytes("UTF-8"));
       
-         FileWriter file = new FileWriter("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\TestMagnetico.arff");
+         /*FileWriter file = new FileWriter("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\TestMagnetico.arff");
          file.write(Test);
-         file.flush();
+         file.flush();*/
        
       // Clasificador, predice las clases 
        
           //Mapa
       //  DataSource mapahuella = new DataSource(MapaMagnetico); //Mapa InputStream
-        DataSource mapahuella = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\MapaMagnetico.arff");
+      /*  DataSource mapahuella = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\MapaMagnetico.arff");
         Instances train = mapahuella.getDataSet();
-        train.setClassIndex(train.numAttributes() -1);
+        train.setClassIndex(train.numAttributes() -1);*/
         
         //Test
       //  DataSource test = new DataSource(TestPredecir); //TestInputStream
-       DataSource test = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\TestMagnetico.arff");
+       /*DataSource test = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\TestMagnetico.arff");
        Instances predict = test.getDataSet();
        predict.setClassIndex(predict.numAttributes() -1);
         
@@ -180,8 +180,7 @@ public class LocalizacionRecurso {
         (ninguno > l1211) && (ninguno > l1212) && (ninguno > l1213)){                                           
     System.out.println ("Estoy en: " + ninguno);
     result = "Ninguno";
-}
+}*/
       return result; 
-    }  
-    
+    } 
 }

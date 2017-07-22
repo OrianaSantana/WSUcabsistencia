@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.Label;
 import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.ResourceIterator;
 import org.neo4j.graphdb.Result;
 import org.neo4j.graphdb.Transaction;
 import org.neo4j.helpers.collection.MapUtil;
@@ -29,7 +30,7 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
    public ENTIDAD _huella = FABRICAENTIDAD.obtenerHuella(0, 0, 0, 0, null,null);
    
     public enum NodeType implements Label{
-        Huella;
+        Huella, Log, secuenciaID;
     }
     private static String FindHuella(){    
         System.out.println("FIND ");
@@ -105,7 +106,8 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
     public ArrayList<Huella> ConsultarHuellasMagneticas() {
        
         ArrayList<Huella> ListaHuella = new ArrayList<>();
-        
+        String Secuencia_id = "";
+        String Secuencia_log = "";
         System.out.println("ARRAYLISTA");
         GraphDatabaseService graphDb = null;
         try {
@@ -115,27 +117,50 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
         }
         final Map<String, Object> params = MapUtil.map( "Hue_tipo", "huellas" ); //Preguntar jesus si dejo el hue_tipo
         try (Transaction tx = graphDb.beginTx()){            
-             System.out.println("TRY DAOHuellaMapa");             
-             Result resultfound = graphDb.execute( FindHuella(), params );             
-             System.out.println(resultfound); 
-             while (resultfound.hasNext())
-                {      
-                    System.out.println("WHILE DAO huella Lista de huellas");
-                    Map<String,Object> row = resultfound.next();
-                    String id =((Node) row.get("n")).getProperty("Hue_id").toString();
-                    int hue_id = Integer.parseInt(id);
-                    String x = ((Node) row.get("n")).getProperty("Hue_x").toString();
-                    float hue_x = Integer.parseInt(x);
-                    String y = ((Node) row.get("n")).getProperty("Hue_y").toString();
-                    float hue_y = Integer.parseInt(y); 
-                    String z = ((Node) row.get("n")).getProperty("Hue_z").toString();
-                    float hue_z = Integer.parseInt(z); 
-                    String hue_salon = ((Node) row.get("n")).getProperty("Hue_salon").toString();
-                   
-                    this._huella = FABRICAENTIDAD.obtenerHuella(hue_id,hue_x,hue_y,hue_z,null,hue_salon);
-                    ListaHuella.add((Huella) _huella);                    
-                }            
+             System.out.println("TRY DAOHuellaMapa");
+             ResourceIterator<Node> providers = graphDb.findNodes(DAOHuella.NodeType.secuenciaID);
+             while (providers.hasNext()) {
+                       final Node recordNode1 = providers.next();               
+                       Secuencia_id = recordNode1.getProperty("Sec_huellas").toString();
+             }            
+             System.out.println("secuencia huellas " + Secuencia_id);
              
+             ResourceIterator<Node> providers1 = graphDb.findNodes(DAOHuella.NodeType.Log);
+             while (providers1.hasNext()) {
+                       final Node recordNode2 = providers1.next();               
+                       Secuencia_log = recordNode2.getProperty("Log_huella").toString();
+             }            
+             System.out.println("secuencia log " + Secuencia_log);
+             if(Secuencia_log.equals(Secuencia_id)){
+                 System.out.println("Son iguales");
+             }
+             else{
+                Result resultfound = graphDb.execute( FindHuella(), params );             
+                System.out.println(resultfound); 
+                while (resultfound.hasNext())
+                   {      
+                       System.out.println("WHILE DAO huella Lista de huellas");
+                       Map<String,Object> row = resultfound.next();
+                       String id =((Node) row.get("n")).getProperty("Hue_id").toString();
+                       int hue_id = Integer.parseInt(id);
+                       String x = ((Node) row.get("n")).getProperty("Hue_x").toString();
+                       float hue_x = Integer.parseInt(x);
+                       String y = ((Node) row.get("n")).getProperty("Hue_y").toString();
+                       float hue_y = Integer.parseInt(y); 
+                       String z = ((Node) row.get("n")).getProperty("Hue_z").toString();
+                       float hue_z = Integer.parseInt(z); 
+                       String hue_salon = ((Node) row.get("n")).getProperty("Hue_salon").toString();
+
+                       this._huella = FABRICAENTIDAD.obtenerHuella(hue_id,hue_x,hue_y,hue_z,null,hue_salon);
+                       ListaHuella.add((Huella) _huella);                    
+                   }
+                    ResourceIterator<Node> providers3 = graphDb.findNodes(DAOHuella.NodeType.Log);
+                    while (providers3.hasNext()) {
+                              final Node recordNode3 = providers3.next();               
+                              recordNode3.setProperty("Log_huella",Secuencia_id );
+                              tx.success();                              
+                    }                            
+             }             
         }
         catch(NullPointerException NullPointerexcepcion)
                 {                      
@@ -147,9 +172,8 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
             System.out.println("SHUTDOWN");
         }
         System.out.println(ListaHuella);        
-        return ListaHuella;
-        
-      
+
+        return ListaHuella;              
     }
     
 }

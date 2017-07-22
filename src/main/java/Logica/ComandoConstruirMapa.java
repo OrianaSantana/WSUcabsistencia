@@ -29,23 +29,19 @@ public class ComandoConstruirMapa extends ComandoGeneral{
            //Justificacion justificacion =(Justificacion) _daoJustificacion.ConsultarJustificacion();
            ArrayList<Huella> listaHuellas = new  ArrayList<>();
            listaHuellas = _daoHuella.ConsultarHuellasMagneticas();
+           String resultadoHuellas = "";
            
-         String resultadoHuellas = "@relation UCAB" + "\n" + "\n" + "@attribute x numeric" + "\n" + "@attribute y numeric" + "\n" + "@attribute z numeric" + "\n" + "@attribute clase {Pasillo,L1207,L1208,L1209,L1210,L1211,L1212,L1213}" + "\n" + "\n" + "@data";
-      
-         for (int i = 0; i < listaHuellas.size(); i++) {
-         
-            resultadoHuellas = resultadoHuellas + "\n" + listaHuellas.get(i).hue_x + "," + listaHuellas.get(i).hue_y + "," + listaHuellas.get(i).hue_z + "," + listaHuellas.get(i).hue_salon;
-         }
-         
-        System.out.println("Mapa Magnetico:" + resultadoHuellas);
-           
-          // System.out.println("JSON" + listaHuellas);
-           //String huellasMagneticas = listaHuellas.toString();
-          // huellasMagneticas = huellasMagneticas.replace("Huellas Magneticas", "");   
-           
-            
-           return resultadoHuellas;
-                   //huellasMagneticas;
+           if (listaHuellas.isEmpty()) {
+              resultadoHuellas = "";
+           } else {
+                  resultadoHuellas = "@relation UCAB" + "\n" + "\n" + "@attribute x numeric" + "\n" + "@attribute y numeric" + "\n" + "@attribute z numeric" + "\n" + "@attribute clase {Pasillo,L1207,L1208,L1209,L1210,L1211,L1212,L1213}" + "\n" + "\n" + "@data";      
+                        for (int i = 0; i < listaHuellas.size(); i++) {         
+                           resultadoHuellas = resultadoHuellas + "\n" + listaHuellas.get(i).hue_x + "," + listaHuellas.get(i).hue_y + "," + listaHuellas.get(i).hue_z + "," + listaHuellas.get(i).hue_salon;
+                        }         
+                System.out.println("Mapa Magnetico:" + resultadoHuellas);
+           }
+             
+            return resultadoHuellas;
         }
         catch (Exception ex)
         {
