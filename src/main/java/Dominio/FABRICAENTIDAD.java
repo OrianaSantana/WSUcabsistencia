@@ -33,7 +33,7 @@ public class FABRICAENTIDAD {
         return new Horario();
     }
 
-    public static ENTIDAD obtenerHuella(int hue_id, float hue_x, float hue_y, float hue_z, Salon salon, String hue_salon)
+    public static ENTIDAD obtenerHuella(int hue_id, double hue_x, double hue_y, double hue_z, Salon salon, String hue_salon)
     {
         return new Huella(hue_id,hue_x,hue_y,hue_z,salon,hue_salon);
     }

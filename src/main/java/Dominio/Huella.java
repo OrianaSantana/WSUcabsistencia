@@ -19,21 +19,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="huella")
 public class Huella extends ENTIDAD{
     public int hue_id;
-    public float hue_x;
-    public float hue_y;
-    public float hue_z;
+    public double hue_x;
+    public double hue_y;
+    public double hue_z;
     public Salon salon;
     public String hue_salon;
 
     public Huella() {
         this.hue_id = 0;
-        this.hue_x = (float) 0.0;
-        this.hue_y = (float) 0.0;
-        this.hue_z = (float) 0.0;
+        this.hue_x = 0.0;
+        this.hue_y = 0.0;
+        this.hue_z = 0.0;
         this.hue_salon = null;
     }
 
-    public Huella(int hue_id, float hue_x, float hue_y, float hue_z, Salon salon, String hue_salon) {
+    public Huella(int hue_id, double hue_x, double hue_y, double hue_z, Salon salon, String hue_salon) {
         this.hue_id = hue_id;
         this.hue_x = hue_x;
         this.hue_y = hue_y;
@@ -53,29 +53,29 @@ public class Huella extends ENTIDAD{
     }
 
        @XmlElement(required=true)
-    public float getHue_x() {
+    public double getHue_x() {
         return hue_x;
     }
 
-    public void setHue_x(Float hue_x) {
+    public void setHue_x(double hue_x) {
         this.hue_x = hue_x;
     }
 
        @XmlElement(required=true)
-    public float getHue_y() {
+    public double getHue_y() {
         return hue_y;
     }
 
-    public void setHue_y(float hue_y) {
+    public void setHue_y(double hue_y) {
         this.hue_y = hue_y;
     }
 
        @XmlElement(required=true)
-    public float getHue_z() {
+    public double getHue_z() {
         return hue_z;
     }
 
-    public void setHue_z(float hue_z) {
+    public void setHue_z(double hue_z) {
         this.hue_z = hue_z;
     }
 
@@ -125,50 +125,7 @@ public class Huella extends ENTIDAD{
         
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + this.hue_id;
-        hash = 79 * hash + Float.floatToIntBits(this.hue_x);
-        hash = 79 * hash + Float.floatToIntBits(this.hue_y);
-        hash = 79 * hash + Float.floatToIntBits(this.hue_z);
-        hash = 79 * hash + Objects.hashCode(this.salon);
-        hash = 79 * hash + Objects.hashCode(this.hue_salon);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Huella other = (Huella) obj;
-        if (this.hue_id != other.hue_id) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.hue_x) != Float.floatToIntBits(other.hue_x)) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.hue_y) != Float.floatToIntBits(other.hue_y)) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.hue_z) != Float.floatToIntBits(other.hue_z)) {
-            return false;
-        }
-        if (!Objects.equals(this.hue_salon, other.hue_salon)) {
-            return false;
-        }
-        if (!Objects.equals(this.salon, other.salon)) {
-            return false;
-        }
-        return true;
-    }
+   
 
 
     

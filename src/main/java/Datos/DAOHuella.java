@@ -34,7 +34,8 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
     }
     private static String FindHuella(){    
         System.out.println("FIND ");
-        return "MATCH (n:Huella) RETURN n";
+        return "MATCH (n:Huella) RETURN n"; //este es la consulta al nodo real
+        //return "MATCH (n:Huellap) RETURN n";
     }
    
     private String ArreglarTest(String huellasTest){
@@ -143,13 +144,18 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
                        Map<String,Object> row = resultfound.next();
                        String id =((Node) row.get("n")).getProperty("hue_id").toString();
                        int hue_id = Integer.parseInt(id);
+                       System.out.println("huella Id " + hue_id);
                        String x = ((Node) row.get("n")).getProperty("hue_x").toString();
-                       float hue_x = Integer.parseInt(x);
+                       double hue_x = Double.parseDouble(x);
+                       System.out.println("huella x " + hue_x);
                        String y = ((Node) row.get("n")).getProperty("hue_y").toString();
-                       float hue_y = Integer.parseInt(y); 
+                       double hue_y = Double.parseDouble(y); 
+                       System.out.println("huella y " + hue_y);
                        String z = ((Node) row.get("n")).getProperty("hue_z").toString();
-                       float hue_z = Integer.parseInt(z); 
+                       double hue_z = Double.parseDouble(z); 
+                       System.out.println("huella z " + hue_z);
                        String hue_salon = ((Node) row.get("n")).getProperty("hue_salon").toString();
+                       System.out.println("huella salon " + hue_salon);
 
                        this._huella = FABRICAENTIDAD.obtenerHuella(hue_id,hue_x,hue_y,hue_z,null,hue_salon);
                        ListaHuella.add((Huella) _huella);                    

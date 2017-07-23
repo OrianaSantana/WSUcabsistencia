@@ -29,6 +29,7 @@ public class ComandoConstruirMapa extends ComandoGeneral{
            //Justificacion justificacion =(Justificacion) _daoJustificacion.ConsultarJustificacion();
            ArrayList<Huella> listaHuellas = new  ArrayList<>();
            listaHuellas = _daoHuella.ConsultarHuellasMagneticas();
+           System.out.println("Lista huellas en comando construir "+listaHuellas);
            String resultadoHuellas = "";
            
            if (listaHuellas.isEmpty()) {
@@ -45,7 +46,7 @@ public class ComandoConstruirMapa extends ComandoGeneral{
         }
         catch (Exception ex)
         {
-             System.out.println("ENTRO EN LA EXCEPTION DE COMANDO CONSULTAR");
+             System.out.println("ENTRO EN LA EXCEPTION DE COMANDO CONSTRUIR MAPA J");
              JsonParser parser = new JsonParser();
              JsonObject o = (JsonObject)parser.parse("{\"respuesta\": \"No se pudo consultar la lista de huellas magneticas\"}");
              return o.toString();                      
