@@ -37,10 +37,10 @@ public class LocalizacionRecurso {
      System.out.println("MAPA " + Mapa);
      
      String Test = FabricaComando.ObtenerComandoConstruirTest().Ejecutar(prueba);
-      
+     
        //InputStream TestPredecir = new ByteArrayInputStream(Test.getBytes("UTF-8"));
       
-         FileWriter fileTest = new FileWriter("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\TestMagnetico.arff");
+         FileWriter fileTest = new FileWriter("C:\\Users\\Oriana\\Documents\\GitHub\\WSUcabsistencia\\TestMagnetico.arff");
          fileTest.write(Test);
          fileTest.flush();
        
@@ -58,7 +58,7 @@ public class LocalizacionRecurso {
         
          //Test
       //  DataSource test = new DataSource(TestPredecir); //TestInputStream
-       DataSource test = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\TestMagnetico.arff");
+       DataSource test = new DataSource("C:\\Users\\Oriana\\Documents\\GitHub\\WSUcabsistencia\\TestMagnetico.arff");
        Instances predict = test.getDataSet();
        predict.setClassIndex(predict.numAttributes() -1);
        
@@ -72,7 +72,7 @@ public class LocalizacionRecurso {
        
           //Mapa
       //  DataSource mapahuella = new DataSource(MapaMagnetico); //Mapa InputStream
-        DataSource mapahuella = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\MapaMagnetico.arff");
+        DataSource mapahuella = new DataSource("C:\\Users\\Oriana\\Documents\\GitHub\\WSUcabsistencia\\MapaMagnetico.arff");
         Instances train = mapahuella.getDataSet();
         train.setClassIndex(train.numAttributes() -1);
         
@@ -176,11 +176,11 @@ public class LocalizacionRecurso {
         } else {
             
          //Se actualiza el archivo existente
-         FileWriter fileMap = new FileWriter("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\MapaMagnetico.arff");
+         FileWriter fileMap = new FileWriter("C:\\Users\\Oriana\\Documents\\GitHub\\WSUcabsistencia\\MapaMagnetico.arff");
          fileMap.write(Mapa);
          fileMap.flush();
         
-        DataSource mapahuella = new DataSource("C:\\Users\\Oriana\\Documents\\NetBeansProjects\\WSUcabsistencia\\WSUcabsistencia\\MapaMagnetico.arff");
+        DataSource mapahuella = new DataSource("C:\\Users\\Oriana\\Documents\\GitHub\\WSUcabsistencia\\MapaMagnetico.arff");
         
         //Solo se puede hacer Input Stream cuando el mapa esta lleno, por archivo no se puede
        // InputStream MapaMagnetico = new ByteArrayInputStream(Mapa.getBytes("UTF-8"));
