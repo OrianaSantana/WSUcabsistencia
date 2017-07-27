@@ -34,6 +34,7 @@ public class ComandoConstruirMapa extends ComandoGeneral{
            
            if (listaHuellas.isEmpty()) {
               resultadoHuellas = "";
+              System.out.println("Mapa Magnetico:" + resultadoHuellas);
            } else {
                   resultadoHuellas = "@relation UCAB" + "\n" + "\n" + "@attribute x numeric" + "\n" + "@attribute y numeric" + "\n" + "@attribute z numeric" + "\n" + "@attribute clase {Pasillo,L1207,L1208,L1209,L1210,L1211,L1212,L1213}" + "\n" + "\n" + "@data";      
                         for (int i = 0; i < listaHuellas.size(); i++) {         
