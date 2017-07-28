@@ -72,13 +72,25 @@ public class DAOHuella extends DAOGeneral implements IDAOHuella {
              for (int i = 0; i < str.length; i++) { 
                  int a = i + 1;
                  int b = i + 2;
+                 
+                 if (str[i] == "") {
+                     str[i] = "0";
+                 }
+                 
+                 if (str[a] == "") {
+                     str[a] = "0";
+                 } 
+                 
+                 if (str[b] == "") {
+                     str[b] = "0";
+                 }
                
                  System.out.println("a" + a);
                  System.out.println("b" + b);
                  
                 respuesta = respuesta + str[i] + "," + str[a] + "," + str[b] + "," + "?" + "\n";
                 
-               i = i + 3;
+                i = i + 3;
                
                 System.out.println("i" + i);
                 System.out.println(respuesta);
