@@ -28,7 +28,7 @@ public class ComandoModificarPreferencia extends ComandoGeneral{
             lista.add(0,str[0]);
             lista.add(1,str[1]);
             lista.add(2,str[2]);
-            lista.add(3,str[3]);
+            //lista.add(3,str[3]);
             
            
            System.out.println("Lista  posici[on 2"+lista.get(2));

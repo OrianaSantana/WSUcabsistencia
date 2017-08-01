@@ -38,8 +38,8 @@ public class DAONotificacion extends DAOGeneral implements IDAONotificacion{
     }
      private static String FindNotificacion(String id_profesor){    
         System.out.println("FIND "+id_profesor);
-        return "Match (n: Notificacion)-[Se_notifica_a]->(Usuario {Usu_id:"+id_profesor+"}) Return n"; //Oriana
-       // return "Match (n: Historico_Notificacion)<-[Se_notifica_a]-(Usuario {Usu_id:"+id_profesor+"}) Return n"; //Jesus
+       // return "Match (n: Notificacion)-[Se_notifica_a]->(Usuario {Usu_id:"+id_profesor+"}) Return n"; //Oriana
+        return "Match (n: Historico_Notificacion)<-[Se_notifica_a]-(Usuario {Usu_id:"+id_profesor+"}) Return n"; //Jesus
     }
     public String EliminarEspacioEnBlanco(String eliminar){
         eliminar = eliminar.replace(" ", "");

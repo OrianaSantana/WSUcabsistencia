@@ -155,7 +155,7 @@ public class DAOPreferencia extends DAOGeneral implements IDAOPreferencia{
              
              
             int status = 2 , nombre = 1, usu_id = 3;
-            for(int i = 0 ; i<=3; i++){
+            for(int i = 0 ; i<=2; i++){
             System.out.println("Entro" + i);
             if("false".equals(str[status]) ){
                 str[status] = "off";
