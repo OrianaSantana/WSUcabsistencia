@@ -64,7 +64,7 @@ public class LocalizacionRecurso {
        
         IBk knn = new IBk();
       
-        knn.setKNN(137);
+        knn.setKNN(249);
        
         if (Mapa.isEmpty()) {
        
